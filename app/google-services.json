@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "742700575588",
+    "project_id": "sonora-5d4f9",
+    "storage_bucket": "sonora-5d4f9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:742700575588:android:b553be45d5bae13889e871",
+        "android_client_info": {
+          "package_name": "com.example.sonora"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJouArYRRVAJLNX6Mg6X3az4P2A6nXV0g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
