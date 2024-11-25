@@ -11,6 +11,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.example.sonora.Adapter.CategoryAdapter
 import com.example.sonora.Adapter.SectionSongListAdapter
 import com.example.sonora.Models.CategoryModel
@@ -29,6 +32,29 @@ class MainActivity : AppCompatActivity() {
         getCategories()
         setupSection("secion_1", binding.section1MainLayout, binding.section1Title, binding.section1RecyclerView)
         setupSection("secion_2", binding.section2MainLayout, binding.section2Title, binding.section2RecyclerView)
+        setupSection("secion_3", binding.section3MainLayout, binding.section3Title, binding.section3RecyclerView)
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showPlayerView()
+    }
+
+    fun showPlayerView(){
+        binding.playerView.setOnClickListener{
+            startActivity(Intent(this,PlayerActivity::class.java))
+        }
+        MyExoplayer.getCurrentSong()?.let{
+            binding.playerView.visibility = View.VISIBLE
+            binding.songTitleTextView.text ="Tocando agora : " + it.title
+            Glide.with(binding.songCoverImageView).load(it.coverUrl)
+                .apply(
+                    RequestOptions().transform(RoundedCorners(32))
+                ).into(binding.songCoverImageView)
+        }?: run {
+            binding.playerView.visibility = View.GONE
+        }
 
     }
 
