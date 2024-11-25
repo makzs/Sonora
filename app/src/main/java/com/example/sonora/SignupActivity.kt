@@ -1,5 +1,6 @@
 package com.example.sonora
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import android.view.View
@@ -46,6 +47,11 @@ class SignupActivity : AppCompatActivity() {
 
             createAccountWithFirebase(email, password)
         }
+
+        binding.gotoLoginBtn.setOnClickListener{
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -58,6 +64,7 @@ class SignupActivity : AppCompatActivity() {
             .addOnSuccessListener {
                 setInProgress(false)
                 Toast.makeText(applicationContext, "Conta criada com sucesso", Toast.LENGTH_SHORT).show()
+                finish()
             }.addOnFailureListener{
                 setInProgress(false)
                 Toast.makeText(applicationContext, "Criação de conta falhou", Toast.LENGTH_SHORT).show()
