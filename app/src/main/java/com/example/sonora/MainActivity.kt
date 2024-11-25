@@ -3,6 +3,7 @@ package com.example.sonora
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.PopupMenu
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -19,6 +20,7 @@ import com.example.sonora.Adapter.SectionSongListAdapter
 import com.example.sonora.Models.CategoryModel
 import com.example.sonora.Models.SongModel
 import com.example.sonora.databinding.ActivityMainBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.toObjects
@@ -38,6 +40,35 @@ class MainActivity : AppCompatActivity() {
         setupSection("secion_3", binding.section3MainLayout, binding.section3Title, binding.section3RecyclerView)
         setupMostlyPlayed("mostly_played", binding.mostlyPlayedMainLayout, binding.mostlyPlayedTitle, binding.mostlyPlayedRecyclerView)
 
+        binding.optionBtn.setOnClickListener{
+            showPopupMenu()
+        }
+
+    }
+
+    fun showPopupMenu() {
+
+        val popupMenu = PopupMenu(this, binding.optionBtn)
+        val inflator = popupMenu.menuInflater
+        inflator.inflate(R.menu.option_menu,popupMenu.menu)
+        popupMenu.show()
+        popupMenu.setOnMenuItemClickListener {
+            when(it.itemId){
+                R.id.logout->{
+                    logout()
+                    true
+                }
+            }
+            false
+        }
+
+
+    }
+
+    fun logout(){
+        FirebaseAuth.getInstance().signOut()
+        startActivity(Intent(this, LoginActivity::class.java))
+        finish()
     }
 
     override fun onResume() {
