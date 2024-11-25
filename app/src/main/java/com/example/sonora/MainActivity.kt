@@ -17,8 +17,11 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.sonora.Adapter.CategoryAdapter
 import com.example.sonora.Adapter.SectionSongListAdapter
 import com.example.sonora.Models.CategoryModel
+import com.example.sonora.Models.SongModel
 import com.example.sonora.databinding.ActivityMainBinding
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.toObjects
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         setupSection("secion_1", binding.section1MainLayout, binding.section1Title, binding.section1RecyclerView)
         setupSection("secion_2", binding.section2MainLayout, binding.section2Title, binding.section2RecyclerView)
         setupSection("secion_3", binding.section3MainLayout, binding.section3Title, binding.section3RecyclerView)
+        setupMostlyPlayed("mostly_played", binding.mostlyPlayedMainLayout, binding.mostlyPlayedTitle, binding.mostlyPlayedRecyclerView)
 
     }
 
@@ -89,6 +93,34 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
+    }
+
+    fun setupMostlyPlayed(id : String, mainLayout : RelativeLayout, titleView: TextView, recyclerView: RecyclerView){
+        FirebaseFirestore.getInstance().collection("sections")
+            .document(id)
+            .get().addOnSuccessListener {
+                FirebaseFirestore.getInstance().collection("songs")
+                    .orderBy("count", Query.Direction.DESCENDING)
+                    .limit(5)
+                    .get().addOnSuccessListener {songsListSnapshot->
+                        val songsModelList = songsListSnapshot.toObjects<SongModel>()
+                        val songsIdList = songsModelList.map{
+                            it.id
+                        }.toList()
+                        val section = it.toObject(CategoryModel::class.java)
+                        section?.apply {
+                            section.songs = songsIdList
+                            mainLayout.visibility = View.VISIBLE
+                            titleView.text = name
+                            recyclerView.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
+                            recyclerView.adapter = SectionSongListAdapter(songs)
+                            mainLayout.setOnClickListener{
+                                SongsListActivity.category = section
+                                startActivity(Intent(this@MainActivity, SongsListActivity::class.java))
+                            }
+                        }
+                    }
+                    }
     }
 
 
