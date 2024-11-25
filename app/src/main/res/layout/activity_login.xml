@@ -9,7 +9,7 @@
     android:padding="8dp"
     android:background="@color/blueDark"
     android:gravity="center"
-    tools:context=".SignupActivity">
+    tools:context=".LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -70,26 +70,12 @@
             android:layout_width="match_parent"
             android:layout_height="20dp"/>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Confirme a senha"
-            android:textColorHint="@color/black"
-            android:padding="16dp"
-            android:inputType="textPassword"
-            android:background="@drawable/roudend_corner"
-            android:id="@+id/confirm_password_edittext"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="20dp"/>
-        
         <Button
             android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:text="Criar conta"
-            android:id="@+id/create_account_btn"/>
-        
+            android:text="Login"
+            android:id="@+id/login_btn"/>
+
         <ProgressBar
             android:layout_width="32dp"
             android:layout_height="60dp"
@@ -100,14 +86,14 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="20dp"/>
-        
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Já tem uma conta?"
+            android:text="Não tem uma conta?"
             android:textColor="@color/textWhite"
             android:gravity="center"
-            android:id="@+id/goto_login_btn"/>
+            android:id="@+id/goto_signup_btn"/>
 
 
 
