@@ -51,6 +51,22 @@
 
 ## ⚙️ Instalação e Execução
 
-1. **Clone o Repositório**:
-   ```bash
-   git clone https://github.com/seu-usuario/sonora.git
+## ⚙️ Instalação e Execução
+
+1. **Clone o Repositório**:  
+   Execute o comando a seguir no terminal para clonar o repositório:  
+   `git clone https://github.com/seu-usuario/sonora.git`
+
+2. **Abra no Android Studio**:  
+   - Certifique-se de que o **Android Studio** esteja instalado em seu computador.  
+   - Abra o projeto clonado no **Android Studio**.  
+
+3. **Configure o Firebase**:  
+   - Acesse o site do Firebase e crie um novo projeto.  
+   - Configure os serviços de **Authentication** e **Firestore**.  
+   - Baixe o arquivo `google-services.json` e coloque-o na pasta `app` do projeto.  
+
+4. **Execute no Emulador ou Dispositivo**:  
+   - Conecte um dispositivo físico ao computador ou configure um emulador Android no **Android Studio**.  
+   - No Android Studio, clique em "Run" para iniciar o aplicativo.  
+
