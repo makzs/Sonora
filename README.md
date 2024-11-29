@@ -51,8 +51,6 @@
 
 ## ⚙️ Instalação e Execução
 
-## ⚙️ Instalação e Execução
-
 1. **Clone o Repositório**:  
    Execute o comando a seguir no terminal para clonar o repositório:  
    `git clone https://github.com/seu-usuario/sonora.git`
